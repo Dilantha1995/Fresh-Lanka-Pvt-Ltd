@@ -13,12 +13,12 @@
   --leaf-2:#a3d44e;       /* pale lime                                   */
   --ocean:#1c6fa6;        /* globe blue — secondary accent               */
   --ocean-deep:#155680;
-  --paper:#f3f1e8;        /* cream page background                       */
-  --paper-2:#eceadf;      /* slightly deeper cream                       */
+  --paper:#ffffff;        /* white page background                       */
+  --paper-2:#f4f5f2;      /* very light neutral for sections            */
   --card:#ffffff;
   --ink:#23301f;          /* body text                                   */
   --muted:#5a6a55;        /* secondary text                              */
-  --line:#d9d6c7;         /* hairlines on cream                          */
+  --line:#e6e7e2;          /* hairlines on white                         */
   --line-dark:rgba(255,255,255,.14);
 
   --maxw:1180px;
@@ -136,8 +136,8 @@ p{margin:0 0 1rem}
 .nav .btn{margin-left:8px;padding:.7rem 1.2rem}
 
 /* header states: transparent over hero, solid after scroll */
-.site-header.on-light{background:rgba(243,241,232,.85);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
-.site-header.scrolled{background:rgba(243,241,232,.92);backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(18,58,34,.08);padding:10px 0}
+.site-header.on-light{background:rgba(255,255,255,.85);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.site-header.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(18,58,34,.08);padding:10px 0}
 .site-header.scrolled .brand img{width:40px;height:40px}
 /* when transparent over a dark hero */
 .site-header.over-dark:not(.scrolled) .brand-text b,
