@@ -11,6 +11,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="canonical" href="https://freshlankaglobal.com/contact.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#123a22">
+<meta name="author" content="Fresh Lanka Global (Pvt) Ltd">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fresh Lanka Global (Pvt) Ltd">
+<meta property="og:title" content="Contact — Fresh Lanka Global (Pvt) Ltd">
+<meta property="og:description" content="Contact Fresh Lanka Global (Pvt) Ltd for retail, wholesale and global export enquiries. Email freshlankapvtltd@gmail.com or call our Sri Lanka and Maldives lines.">
+<meta property="og:url" content="https://freshlankaglobal.com/contact.html">
+<meta property="og:image" content="https://freshlankaglobal.com/assets/emblem.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — Fresh Lanka Global (Pvt) Ltd">
+<meta name="twitter:description" content="Contact Fresh Lanka Global (Pvt) Ltd for retail, wholesale and global export enquiries. Email freshlankapvtltd@gmail.com or call our Sri Lanka and Maldives lines.">
+<meta name="twitter:image" content="https://freshlankaglobal.com/assets/emblem.png">
 </head>
 <body>
 
@@ -50,7 +64,11 @@
       <div class="reveal">
         <span class="eyebrow">Send a message</span>
         <h2 style="margin-bottom:24px">Make an enquiry</h2>
-        <form class="form" id="enquiry-form" novalidate>
+        <form class="form" id="enquiry-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+          <input type="hidden" name="subject" value="New website enquiry — Fresh Lanka Global">
+          <input type="hidden" name="from_name" value="Fresh Lanka Global website">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="name">Your name</label>
             <input id="name" name="name" type="text" placeholder="Full name or company" required>
@@ -80,8 +98,8 @@
           </div>
           <button type="submit" class="btn btn--primary">Send enquiry
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          <p class="note" id="form-ok" style="display:none;color:var(--green);font-weight:600">Thanks — your email app will open with your message ready to send.</p>
-          <p class="note">This form opens your email app addressed to our team. Prefer email? Write to <a href="mailto:freshlankapvtltd@gmail.com" style="color:var(--green)">freshlankapvtltd@gmail.com</a>.</p>
+          <p class="note" id="form-ok" style="display:none;color:var(--green);font-weight:600">Thank you — your enquiry has been sent. We'll reply by email shortly.</p>
+          <p class="note">Your enquiry is emailed straight to our team. Prefer to write directly? Email <a href="mailto:freshlankapvtltd@gmail.com" style="color:var(--green)">freshlankapvtltd@gmail.com</a>.</p>
         </form>
       </div>
 

@@ -49,31 +49,39 @@
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  /* contact form -> compose email (no backend) */
+  /* contact form -> send via Web3Forms (delivers to our inbox, no server needed) */
   const form = document.getElementById('enquiry-form');
+  const ok = document.getElementById('form-ok');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const data = new FormData(form);
-      const name = data.get('name') || '';
-      const email = data.get('email') || '';
-      const phone = data.get('phone') || '';
-      const type = data.get('type') || 'General enquiry';
-      const msg = data.get('message') || '';
-      const lines = [
-        'Name: ' + name,
-        'Email: ' + email,
-        'Phone: ' + phone,
-        'Enquiry type: ' + type,
-        '',
-        msg
-      ].join('\r\n');
-      const subject = 'Website enquiry: ' + type;
-      window.location.href =
-        'mailto:freshlankapvtltd@gmail.com?subject=' +
-        encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines);
-      const ok = document.getElementById('form-ok');
-      if (ok) ok.style.display = 'block';
+      const btn = form.querySelector('button[type="submit"]');
+      const original = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      const showMsg = (text, good) => {
+        if (!ok) return;
+        ok.textContent = text;
+        ok.style.color = good ? 'var(--green)' : '#b23b3b';
+        ok.style.display = 'block';
+      };
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        const out = await res.json().catch(() => ({}));
+        if (res.ok && out.success) {
+          form.reset();
+          showMsg("Thank you — your enquiry has been sent. We'll reply by email shortly.", true);
+        } else {
+          showMsg('Sorry, something went wrong. Please email freshlankapvtltd@gmail.com directly.', false);
+        }
+      } catch (err) {
+        showMsg('Sorry, something went wrong. Please email freshlankapvtltd@gmail.com directly.', false);
+      } finally {
+        if (btn) { btn.disabled = false; btn.innerHTML = original; }
+      }
     });
   }
 })();
