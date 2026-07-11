@@ -8,68 +8,72 @@
 <link rel="icon" href="assets/emblem.png">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --forest:#123a22;--green:#1e6b3a;--leaf:#5eb320;--ink:#23301f;--muted:#5a6a55;
-  --paper:#f4f7f2;--card:#fff;--line:#e3ece0;--radius:14px;
-  --ff:'Plus Jakarta Sans',system-ui,sans-serif;--ff-d:'Bricolage Grotesque',var(--ff);
-}
+:root{--forest:#123a22;--green:#1e6b3a;--leaf:#5eb320;--ink:#23301f;--muted:#5a6a55;
+  --paper:#f4f7f2;--line:#e3ece0;--ff:'Plus Jakarta Sans',system-ui,sans-serif;--ff-d:'Bricolage Grotesque',var(--ff)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--ff);background:var(--paper);color:var(--ink);line-height:1.6}
-.bar{background:var(--forest);color:#fff;padding:14px 22px;display:flex;align-items:center;
-  justify-content:space-between;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:20}
-.bar .l{display:flex;align-items:center;gap:11px}
-.bar img{width:34px;height:34px}
-.bar b{font-family:var(--ff-d);font-size:1.05rem;letter-spacing:.01em}
-.bar .tag{background:rgba(255,255,255,.15);font-size:.68rem;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;padding:.25rem .55rem;border-radius:999px}
-.wrap{max-width:1080px;margin:0 auto;padding:26px 20px 70px}
-.tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
-.tab{border:1.5px solid var(--line);background:#fff;color:var(--muted);font:inherit;font-weight:700;
-  font-size:.92rem;padding:.6rem 1.15rem;border-radius:999px;cursor:pointer}
+.bar{background:var(--forest);color:#fff;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+.bar .l{display:flex;align-items:center;gap:10px}
+.bar img{width:32px;height:32px}
+.bar b{font-family:var(--ff-d);font-size:1.02rem}
+.tag{background:rgba(255,255,255,.15);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.22rem .5rem;border-radius:999px}
+.conn{display:flex;align-items:center;gap:8px;font-size:.82rem}
+.dot{width:9px;height:9px;border-radius:50%;background:#e0a23c}
+.dot.ok{background:#5eb320}
+.wrap{max-width:1060px;margin:0 auto;padding:24px 20px 90px}
+.tabs{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap}
+.tab{border:1.5px solid var(--line);background:#fff;color:var(--muted);font:inherit;font-weight:700;font-size:.9rem;
+  padding:.55rem 1.05rem;border-radius:999px;cursor:pointer}
 .tab.on{background:var(--green);border-color:var(--green);color:#fff}
 .panel{display:none}.panel.on{display:block}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px}
-h2{font-family:var(--ff-d);font-size:1.3rem;color:var(--forest);margin-bottom:4px}
-.sub{color:var(--muted);font-size:.92rem;margin-bottom:18px}
-label{display:block;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  color:var(--muted);margin-bottom:5px}
-input,select,textarea{width:100%;padding:.62rem .8rem;border:1.5px solid var(--line);border-radius:10px;
-  font:inherit;font-size:.94rem;background:#fff;color:var(--ink);outline:none}
-input:focus,select:focus,textarea:focus{border-color:var(--leaf)}
-.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:12px}
-.btn{border:0;background:var(--green);color:#fff;font:inherit;font-weight:700;font-size:.92rem;
-  padding:.68rem 1.25rem;border-radius:10px;cursor:pointer}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+h2{font-family:var(--ff-d);font-size:1.25rem;color:var(--forest);margin-bottom:3px}
+.sub{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+input,select,textarea{width:100%;padding:.6rem .78rem;border:1.5px solid var(--line);border-radius:10px;font:inherit;
+  font-size:.93rem;background:#fff;color:var(--ink);outline:none}
+input:focus,select:focus{border-color:var(--leaf)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin-bottom:11px}
+.btn{border:0;background:var(--green);color:#fff;font:inherit;font-weight:700;font-size:.9rem;padding:.65rem 1.2rem;
+  border-radius:10px;cursor:pointer}
 .btn:hover{background:var(--leaf)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
 .btn.ghost{background:#fff;color:var(--green);border:1.5px solid var(--line)}
-.btn.red{background:#fff;color:#b23b3b;border:1.5px solid #f0d3d3}
 .btn.big{width:100%;padding:.9rem;font-size:1rem}
-.plist{display:grid;gap:10px}
-.prow{display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);
-  border-radius:12px;padding:10px 13px}
-.prow .thumb{width:52px;height:52px;border-radius:9px;object-fit:cover;flex:none;
-  background:linear-gradient(140deg,#eaf5e4,#dcebd4);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-.prow .info{flex:1;min-width:0}
-.prow .info b{display:block;font-size:.94rem;color:var(--forest)}
-.prow .info span{font-size:.82rem;color:var(--muted)}
-.prow .acts{display:flex;gap:6px}
-.prow .acts button{border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:.4rem .7rem;
-  cursor:pointer;font-size:.82rem;font-weight:700;color:var(--muted)}
-.prow .acts button:hover{border-color:var(--leaf);color:var(--green)}
-.save-box{position:sticky;bottom:0;background:#fff;border-top:2px solid var(--leaf);padding:16px 20px;
-  margin:22px -20px -70px;box-shadow:0 -6px 24px rgba(18,58,34,.1)}
-.hint{background:#eef6ea;border-left:4px solid var(--leaf);padding:12px 15px;border-radius:9px;
-  font-size:.88rem;margin-bottom:16px}
+.plist{display:grid;gap:9px}
+.prow{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px}
+.thumb{width:50px;height:50px;border-radius:9px;object-fit:cover;flex:none;background:linear-gradient(140deg,#eaf5e4,#dcebd4);
+  display:flex;align-items:center;justify-content:center;font-size:1.25rem}
+.info{flex:1;min-width:0}
+.info b{display:block;font-size:.93rem;color:var(--forest)}
+.info span{font-size:.81rem;color:var(--muted)}
+.acts{display:flex;gap:5px;flex-wrap:wrap}
+.acts button{border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:.36rem .65rem;cursor:pointer;
+  font-size:.8rem;font-weight:700;color:var(--muted)}
+.acts button:hover{border-color:var(--leaf);color:var(--green)}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--leaf);padding:12px 20px;
+  box-shadow:0 -6px 24px rgba(18,58,34,.12);display:flex;gap:12px;align-items:center;justify-content:center;z-index:15;flex-wrap:wrap}
+.savebar .msg{font-size:.86rem;color:var(--muted)}
+.hint{background:#eef6ea;border-left:4px solid var(--leaf);padding:11px 14px;border-radius:9px;font-size:.87rem;margin-bottom:14px}
 .hint b{color:var(--forest)}
-.code{background:var(--forest);color:#cfe8c0;font-family:ui-monospace,monospace;font-size:.82rem;
-  padding:14px;border-radius:10px;overflow:auto;max-height:280px;white-space:pre;margin-top:10px}
-.pill{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:.22rem .5rem;
+.warn{background:#fff6e8;border-left:4px solid #e0a23c}
+.pill{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:.2rem .48rem;
   border-radius:999px;background:#eaf5e4;color:var(--green)}
-dialog{border:0;border-radius:16px;padding:0;max-width:520px;width:92%;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.cat-chip{display:inline-flex;align-items:center;gap:7px;background:#eaf5e4;color:var(--green);font-weight:700;
+  font-size:.86rem;padding:.42rem .5rem .42rem .85rem;border-radius:999px;margin:0 7px 7px 0}
+.cat-chip button{border:0;background:rgba(30,107,58,.15);color:var(--green);width:20px;height:20px;border-radius:50%;
+  cursor:pointer;font-weight:800;line-height:1;font-size:.8rem}
+dialog{border:0;border-radius:16px;padding:0;max-width:520px;width:93%;box-shadow:0 30px 80px rgba(0,0,0,.3)}
 dialog::backdrop{background:rgba(18,58,34,.5)}
-.dlg-in{padding:24px}
-.dlg-in h3{font-family:var(--ff-d);color:var(--forest);margin-bottom:14px}
-.imgprev{width:88px;height:88px;border-radius:11px;object-fit:cover;border:1.5px solid var(--line);
-  background:#f0f5ee;display:block;margin-bottom:8px}
+.dlg-in{padding:22px}
+.dlg-in h3{font-family:var(--ff-d);color:var(--forest);margin-bottom:13px}
+.imgprev{width:96px;height:96px;border-radius:11px;object-fit:cover;border:1.5px solid var(--line);background:#f0f5ee;display:block}
+.upl{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;
+  border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -77,144 +81,142 @@ dialog::backdrop{background:rgba(18,58,34,.5)}
 <div class="bar">
   <div class="l">
     <img src="assets/emblem.png" alt="">
-    <b>Fresh Lanka Global</b>
-    <span class="tag">Admin Panel</span>
+    <b>Fresh Lanka Global</b><span class="tag">Admin</span>
   </div>
-  <a href="index.html" style="color:#cfe8c0;font-size:.88rem;text-decoration:none">← View website</a>
+  <div class="conn"><span class="dot" id="dot"></span><span id="conn-txt">Not connected</span></div>
+  <a href="index.html" style="color:#cfe8c0;font-size:.86rem;text-decoration:none">&larr; View website</a>
 </div>
 
 <div class="wrap">
 
-  <div class="hint">
-    <b>How this works:</b> Make your changes below, then click <b>Save</b>. The panel gives you an updated
-    file to upload to GitHub — your live website updates automatically within a minute.
-    This page is <b>never shown to customers</b>.
-  </div>
-
   <div class="tabs">
-    <button class="tab on" data-p="products">🛒 Products &amp; Prices</button>
-    <button class="tab" data-p="stores">📍 Stores</button>
-    <button class="tab" data-p="orders">📦 Orders</button>
-    <button class="tab" data-p="images">🖼️ Photos &amp; Logo</button>
+    <button class="tab on" data-p="products">&#128722; Products</button>
+    <button class="tab" data-p="cats">&#127991; Categories</button>
+    <button class="tab" data-p="orders">&#128230; Orders</button>
+    <button class="tab" data-p="stores">&#128205; Stores</button>
+    <button class="tab" data-p="setup">&#128273; Connect</button>
   </div>
 
-  <!-- ============ PRODUCTS ============ -->
+  <div class="panel" id="p-setup">
+    <div class="card">
+      <h2>Connect to GitHub</h2>
+      <p class="sub">Connect once. After that, every change you save publishes to your live website automatically.</p>
+      <div class="hint">
+        <b>Get your key (one time, 2 minutes):</b><br>
+        1. Go to <b>github.com &rarr; Settings &rarr; Developer settings &rarr; Personal access tokens &rarr; Fine-grained tokens</b><br>
+        2. Click <b>Generate new token</b>. Name it "Website Admin".<br>
+        3. Repository access &rarr; <b>Only select repositories</b> &rarr; pick <b>Fresh-Lanka-Pvt-Ltd</b><br>
+        4. Permissions &rarr; Repository permissions &rarr; set <b>Contents</b> to <b>Read and write</b><br>
+        5. Generate, copy the token, paste it below.
+      </div>
+      <div class="row">
+        <div><label>GitHub username</label><input id="g-owner" placeholder="Dilantha1995"></div>
+        <div><label>Repository name</label><input id="g-repo" placeholder="Fresh-Lanka-Pvt-Ltd"></div>
+        <div><label>Branch</label><input id="g-branch" value="main"></div>
+      </div>
+      <div style="margin-bottom:12px"><label>Access token</label><input id="g-token" type="password" placeholder="github_pat_..."></div>
+      <button class="btn" id="g-save">Connect &amp; test</button>
+      <button class="btn ghost" id="g-clear">Disconnect</button>
+      <div class="hint warn" style="margin-top:16px">
+        <b>Keep it private:</b> the token is stored only in this browser, never on the website.
+        Don't use this on a shared computer. If it leaks, delete it on GitHub and make a new one.
+      </div>
+    </div>
+  </div>
+
   <div class="panel on" id="p-products">
     <div class="card">
       <h2>Products &amp; Prices</h2>
-      <p class="sub">Add new products, change prices, or remove items from the shop.</p>
-      <button class="btn" id="add-new">＋ Add new product</button>
-      <div class="plist" id="plist" style="margin-top:16px"></div>
-    </div>
-    <div class="save-box">
-      <button class="btn big" id="save-products">💾 Save products.json</button>
+      <p class="sub">Add products, upload photos, set prices. Saving updates the live shop automatically.</p>
+      <button class="btn" id="add-new">&#65291; Add new product</button>
+      <div class="plist" id="plist" style="margin-top:15px"></div>
     </div>
   </div>
 
-  <!-- ============ STORES ============ -->
-  <div class="panel" id="p-stores">
+  <div class="panel" id="p-cats">
     <div class="card">
-      <h2>Store Locations</h2>
-      <p class="sub">Customers see the nearest store based on the country they choose.</p>
-      <div id="stores"></div>
-    </div>
-    <div class="save-box">
-      <button class="btn big" id="save-stores">💾 Save products.json</button>
+      <h2>Product Categories</h2>
+      <p class="sub">These become the filter buttons on your shop page.</p>
+      <div id="catlist" style="margin-bottom:14px"></div>
+      <div class="row" style="margin-bottom:0">
+        <div><label>New category name</label><input id="newcat" placeholder="e.g. Spices"></div>
+        <div style="display:flex;align-items:flex-end"><button class="btn" id="addcat">&#65291; Add category</button></div>
+      </div>
     </div>
   </div>
 
-  <!-- ============ ORDERS ============ -->
   <div class="panel" id="p-orders">
     <div class="card">
       <h2>Manage Orders</h2>
-      <p class="sub">When an order email arrives, add it here. Customers track it on the Track Order page.</p>
-      <div class="hint">📧 Every order is emailed to you with a reference like <b>FLG-K4M2X9</b>. Paste that reference below.</div>
-
+      <p class="sub">Add each order from your email, then update its status as it moves.</p>
       <div class="row">
         <div><label>Order reference</label><input id="o-ref" placeholder="FLG-K4M2X9"></div>
-        <div><label>Customer name</label><input id="o-cust" placeholder="Ahmed Ali"></div>
+        <div><label>Customer name</label><input id="o-cust"></div>
       </div>
       <div class="row">
         <div><label>Total</label><input id="o-total" placeholder="MVR 150"></div>
         <div><label>Date placed</label><input id="o-date" type="date"></div>
         <div><label>Status</label>
           <select id="o-status">
-            <option value="received">1 — Order received</option>
-            <option value="packing">2 — Packing</option>
-            <option value="shipped">3 — Dispatched</option>
-            <option value="out_for_delivery">4 — Out for delivery</option>
-            <option value="delivered">5 — Delivered</option>
-          </select>
-        </div>
+            <option value="received">1 &mdash; Order received</option>
+            <option value="packing">2 &mdash; Packing</option>
+            <option value="shipped">3 &mdash; Dispatched</option>
+            <option value="out_for_delivery">4 &mdash; Out for delivery</option>
+            <option value="delivered">5 &mdash; Delivered</option>
+          </select></div>
       </div>
-      <div style="margin-bottom:12px"><label>Items</label><input id="o-items" placeholder="2 × Premium Betel Leaves"></div>
+      <div style="margin-bottom:11px"><label>Items</label><input id="o-items"></div>
       <div class="row">
-        <div><label>Customer phone</label><input id="o-phone" placeholder="+960 7xx xxxx"></div>
-        <div><label>Delivery address</label><input id="o-addr" placeholder="H. Villa, Majeedhee Magu, Malé"></div>
+        <div><label>Customer phone</label><input id="o-phone"></div>
+        <div><label>Delivery address</label><input id="o-addr"></div>
       </div>
-      <div style="margin-bottom:14px"><label>Note to customer (optional)</label><input id="o-note" placeholder="Arriving in Malé by 4pm."></div>
-      <button class="btn" id="o-save">＋ Add / update this order</button>
-
-      <div class="plist" id="olist" style="margin-top:20px"></div>
-    </div>
-    <div class="save-box">
-      <button class="btn big" id="save-orders">💾 Save orders.json</button>
+      <div style="margin-bottom:12px"><label>Note to customer (optional)</label><input id="o-note"></div>
+      <button class="btn" id="o-save">&#65291; Add / update order</button>
+      <div class="plist" id="olist" style="margin-top:18px"></div>
     </div>
   </div>
 
-  <!-- ============ IMAGES ============ -->
-  <div class="panel" id="p-images">
+  <div class="panel" id="p-stores">
     <div class="card">
-      <h2>Product Photos &amp; Logo</h2>
-      <p class="sub">Photos live in the <b>assets</b> folder of your GitHub repo.</p>
-
-      <div class="hint">
-        <b>To add a product photo:</b><br>
-        1. Take a clear, square photo of the product.<br>
-        2. Rename it simply, e.g. <b>okra.jpg</b> (lowercase, no spaces).<br>
-        3. Upload it to GitHub → <b>assets</b> folder.<br>
-        4. In the <b>Products</b> tab, set that product's Image to <b>assets/okra.jpg</b> and Save.
-      </div>
-
-      <div class="hint">
-        <b>To change the logo:</b> upload your new logo to GitHub → <b>assets</b> folder, named exactly
-        <b>emblem.png</b> (replacing the old one). Use a transparent PNG. The whole site updates automatically.
-      </div>
-
-      <h2 style="margin-top:22px;font-size:1.05rem">Prepare a photo</h2>
-      <p class="sub">Drop a photo here to crop it square and shrink it for the web — then download and upload to GitHub.</p>
-      <input type="file" id="imgfile" accept="image/*" style="margin-bottom:12px">
-      <img class="imgprev" id="imgprev" alt="" style="display:none">
-      <div class="row" style="margin-bottom:0">
-        <div><label>Save as filename</label><input id="imgname" placeholder="okra.jpg"></div>
-        <div style="display:flex;align-items:flex-end"><button class="btn" id="imgdl">⬇ Download ready photo</button></div>
-      </div>
+      <h2>Store Locations</h2>
+      <p class="sub">Customers see the nearest store based on the country they pick.</p>
+      <div id="stores"></div>
     </div>
   </div>
 
 </div>
 
-<!-- product editor dialog -->
+<div class="savebar">
+  <button class="btn big" id="publish" style="max-width:400px">&#128640; Save &amp; publish to website</button>
+  <span class="msg" id="msg"></span>
+</div>
+
 <dialog id="dlg">
   <div class="dlg-in">
     <h3 id="dlg-t">Edit product</h3>
-    <div style="margin-bottom:12px"><label>Product name</label><input id="f-name"></div>
-    <div class="row">
-      <div><label>Category</label>
-        <select id="f-cat"><option>Betel</option><option>Vegetables</option><option>Fruits</option><option>Groceries</option></select>
+    <div class="upl">
+      <img class="imgprev" id="f-prev" alt="">
+      <div style="flex:1">
+        <label>Product photo</label>
+        <input type="file" id="f-file" accept="image/*" style="padding:.4rem;font-size:.84rem">
+        <p style="font-size:.76rem;color:var(--muted);margin-top:4px">Cropped square, shrunk and uploaded automatically.</p>
       </div>
-      <div><label>Image path</label><input id="f-img" placeholder="assets/okra.jpg"></div>
     </div>
+    <input type="hidden" id="f-img">
+    <div style="margin-bottom:11px"><label>Product name</label><input id="f-name"></div>
     <div class="row">
-      <div><label>Price — Maldives (MVR)</label><input id="f-mv" type="number" step="0.01"></div>
-      <div><label>Price — Sri Lanka (LKR)</label><input id="f-lk" type="number" step="0.01"></div>
-    </div>
-    <div class="row">
-      <div><label>Rating (1–5)</label><input id="f-rating" type="number" step="0.1" min="1" max="5" value="4.8"></div>
-      <div><label>Reviews count</label><input id="f-reviews" type="number" value="12"></div>
+      <div><label>Category</label><select id="f-cat"></select></div>
       <div><label>Show "Fresh" badge</label><select id="f-org"><option value="true">Yes</option><option value="false">No</option></select></div>
     </div>
-    <div style="display:flex;gap:9px;margin-top:16px">
+    <div class="row">
+      <div><label>Price &mdash; Maldives (MVR)</label><input id="f-mv" type="number" step="0.01"></div>
+      <div><label>Price &mdash; Sri Lanka (LKR)</label><input id="f-lk" type="number" step="0.01"></div>
+    </div>
+    <div class="row">
+      <div><label>Rating (1-5)</label><input id="f-rating" type="number" step="0.1" min="1" max="5" value="4.8"></div>
+      <div><label>Reviews count</label><input id="f-reviews" type="number" value="12"></div>
+    </div>
+    <div style="display:flex;gap:9px;margin-top:14px">
       <button class="btn" id="dlg-save" style="flex:1">Save product</button>
       <button class="btn ghost" id="dlg-cancel">Cancel</button>
     </div>
@@ -226,225 +228,311 @@ const $ = id => document.getElementById(id);
 let DATA = { categories:[], stores:{}, products:[] };
 let ORDERS = { orders:{} };
 let editIdx = -1;
+let pendingImgs = [];
+let GH = JSON.parse(localStorage.getItem('fl_gh') || '{}');
+const msg = t => { $('msg').textContent = t; };
 
-/* ---------- tabs ---------- */
 document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
   document.querySelectorAll('.tab').forEach(x => x.classList.remove('on'));
   document.querySelectorAll('.panel').forEach(x => x.classList.remove('on'));
-  t.classList.add('on');
-  $('p-' + t.dataset.p).classList.add('on');
+  t.classList.add('on'); $('p-' + t.dataset.p).classList.add('on');
 });
 
-/* ---------- load ---------- */
-async function load() {
+function connState() {
+  const ok = !!(GH.owner && GH.repo && GH.token);
+  $('dot').classList.toggle('ok', ok);
+  $('conn-txt').textContent = ok ? 'Connected - auto-publish on' : 'Not connected';
+  if (ok) {
+    $('g-owner').value = GH.owner; $('g-repo').value = GH.repo;
+    $('g-branch').value = GH.branch || 'main'; $('g-token').value = GH.token;
+  }
+  return ok;
+}
+$('g-save').onclick = async () => {
+  GH = { owner:$('g-owner').value.trim(), repo:$('g-repo').value.trim(),
+         branch:($('g-branch').value.trim() || 'main'), token:$('g-token').value.trim() };
+  if (!GH.owner || !GH.repo || !GH.token) { alert('Please fill in all four fields.'); return; }
+  msg('Testing connection...');
   try {
-    DATA = await (await fetch('products.json?v=' + Date.now())).json();
-  } catch(e) { alert('Could not load products.json'); }
+    const r = await fetch('https://api.github.com/repos/' + GH.owner + '/' + GH.repo,
+      { headers:{ Authorization:'Bearer ' + GH.token, Accept:'application/vnd.github+json' } });
+    if (!r.ok) throw new Error('Could not reach the repository. Check the name and token permissions.');
+    localStorage.setItem('fl_gh', JSON.stringify(GH));
+    connState(); msg('Connected! Changes now publish automatically.');
+    alert('Connected successfully.\n\nSaving will now update your live website by itself.');
+  } catch (e) { msg(''); alert('Connection failed: ' + e.message); }
+};
+$('g-clear').onclick = () => {
+  if (!confirm('Disconnect from GitHub?')) return;
+  localStorage.removeItem('fl_gh'); GH = {};
+  ['g-owner','g-repo','g-token'].forEach(i => $(i).value = '');
+  connState(); msg('Disconnected.');
+};
+
+const b64 = s => btoa(unescape(encodeURIComponent(s)));
+
+async function ghGetSha(path) {
+  const r = await fetch('https://api.github.com/repos/' + GH.owner + '/' + GH.repo +
+    '/contents/' + path + '?ref=' + GH.branch,
+    { headers:{ Authorization:'Bearer ' + GH.token, Accept:'application/vnd.github+json' } });
+  if (r.status === 404) return null;
+  const j = await r.json();
+  return j.sha || null;
+}
+async function ghPut(path, contentB64, message) {
+  const sha = await ghGetSha(path);
+  const body = { message: message, content: contentB64, branch: GH.branch };
+  if (sha) body.sha = sha;
+  const r = await fetch('https://api.github.com/repos/' + GH.owner + '/' + GH.repo + '/contents/' + path, {
+    method:'PUT',
+    headers:{ Authorization:'Bearer ' + GH.token, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || 'Upload failed'); }
+  return true;
+}
+function dl(name, obj) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(obj, null, 2)], { type:'application/json' }));
+  a.download = name; a.click();
+}
+
+$('publish').onclick = async () => {
+  const btn = $('publish');
+  if (!connState()) {
+    if (!confirm('Not connected to GitHub, so I can only download the files for you to upload by hand.\n\nConnect on the "Connect" tab for automatic publishing.\n\nDownload files now?')) return;
+    dl('products.json', DATA);
+    setTimeout(() => dl('orders.json', ORDERS), 600);
+    return;
+  }
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>Publishing...';
+  try {
+    for (const im of pendingImgs) {
+      msg('Uploading photo ' + im.name + '...');
+      await ghPut('assets/' + im.name, im.b64, 'Add product photo ' + im.name);
+    }
+    pendingImgs = [];
+    msg('Saving products...');
+    await ghPut('products.json', b64(JSON.stringify(DATA, null, 2)), 'Update products via admin panel');
+    msg('Saving orders...');
+    await ghPut('orders.json', b64(JSON.stringify(ORDERS, null, 2)), 'Update orders via admin panel');
+    msg('Published! Your website updates in about a minute.');
+    alert('Saved and published!\n\nYour live website will show the changes in about a minute.');
+  } catch (e) {
+    msg('');
+    alert('Could not publish: ' + e.message + '\n\nCheck your token has "Contents: Read and write" permission.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '&#128640; Save &amp; publish to website';
+  }
+};
+
+async function load() {
+  try { DATA = await (await fetch('products.json?v=' + Date.now())).json(); } catch (e) {}
   try {
     ORDERS = await (await fetch('orders.json?v=' + Date.now())).json();
     if (!ORDERS.orders) ORDERS.orders = {};
-  } catch(e) { ORDERS = { orders:{} }; }
-  renderProducts(); renderStores(); renderOrders();
+  } catch (e) { ORDERS = { orders:{} }; }
+  if (!DATA.categories) DATA.categories = [];
+  if (!DATA.products) DATA.products = [];
+  if (!DATA.stores) DATA.stores = {};
+  connState(); renderCats(); renderProducts(); renderStores(); renderOrders();
 }
 
-/* ---------- products ---------- */
+function renderCats() {
+  $('catlist').innerHTML = DATA.categories.map((c, i) =>
+    '<span class="cat-chip">' + c + '<button data-dc="' + i + '" title="Remove">&#10005;</button></span>').join('')
+    || '<p style="color:var(--muted)">No categories yet.</p>';
+  $('f-cat').innerHTML = DATA.categories.map(c => '<option>' + c + '</option>').join('');
+}
+$('addcat').onclick = () => {
+  const v = $('newcat').value.trim();
+  if (!v) return;
+  if (DATA.categories.includes(v)) { alert('That category already exists.'); return; }
+  DATA.categories.push(v); $('newcat').value = '';
+  renderCats(); msg('Category added - click Save & publish.');
+};
+$('catlist').onclick = e => {
+  const d = e.target.closest('[data-dc]'); if (!d) return;
+  const i = +d.dataset.dc, name = DATA.categories[i];
+  const used = DATA.products.filter(p => p.cat === name).length;
+  if (used && !confirm(used + ' product(s) use "' + name + '". Remove it anyway?')) return;
+  DATA.categories.splice(i, 1); renderCats(); msg('Category removed - click Save & publish.');
+};
+
 function renderProducts() {
-  $('plist').innerHTML = DATA.products.map((p, i) => `
-    <div class="prow">
-      ${p.img ? `<img class="thumb" src="${p.img}" alt="">` : `<div class="thumb">🌿</div>`}
-      <div class="info">
-        <b>${p.name}</b>
-        <span><span class="pill">${p.cat}</span> &nbsp; MVR ${p.mv} &nbsp;·&nbsp; LKR ${p.lk}</span>
-      </div>
-      <div class="acts">
-        <button data-e="${i}">Edit</button>
-        <button data-d="${i}">Delete</button>
-      </div>
-    </div>`).join('') || '<p style="color:var(--muted)">No products yet.</p>';
+  $('plist').innerHTML = DATA.products.map((p, i) =>
+    '<div class="prow">' +
+      (p.img ? '<img class="thumb" src="' + p.img + '">' : '<div class="thumb">&#127807;</div>') +
+      '<div class="info"><b>' + p.name + '</b><span><span class="pill">' + p.cat + '</span> &nbsp; MVR ' +
+        p.mv + ' &middot; LKR ' + p.lk + '</span></div>' +
+      '<div class="acts"><button data-e="' + i + '">Edit</button><button data-d="' + i + '">Delete</button></div>' +
+    '</div>').join('') || '<p style="color:var(--muted)">No products yet.</p>';
 }
-
 $('plist').onclick = e => {
   const ed = e.target.closest('[data-e]'), del = e.target.closest('[data-d]');
   if (ed) openDlg(+ed.dataset.e);
   if (del) {
     const i = +del.dataset.d;
-    if (confirm('Delete "' + DATA.products[i].name + '"?')) { DATA.products.splice(i,1); renderProducts(); }
+    if (confirm('Delete "' + DATA.products[i].name + '"?')) {
+      DATA.products.splice(i, 1); renderProducts(); msg('Deleted - click Save & publish.');
+    }
   }
 };
-$('add-new').onclick = () => openDlg(-1);
-
+$('add-new').onclick = () => {
+  if (!DATA.categories.length) { alert('Add a category first (Categories tab).'); return; }
+  openDlg(-1);
+};
 function openDlg(i) {
   editIdx = i;
-  const p = i < 0 ? {name:'',cat:'Vegetables',img:'',mv:0,lk:0,rating:4.8,reviews:12,organic:true} : DATA.products[i];
+  const p = i < 0
+    ? { name:'', cat:DATA.categories[0], img:'', mv:0, lk:0, rating:4.8, reviews:12, organic:true }
+    : DATA.products[i];
   $('dlg-t').textContent = i < 0 ? 'Add new product' : 'Edit product';
   $('f-name').value = p.name; $('f-cat').value = p.cat; $('f-img').value = p.img || '';
   $('f-mv').value = p.mv; $('f-lk').value = p.lk;
   $('f-rating').value = p.rating; $('f-reviews').value = p.reviews;
   $('f-org').value = String(p.organic);
+  $('f-prev').src = p.img || '';
+  $('f-file').value = '';
   $('dlg').showModal();
 }
 $('dlg-cancel').onclick = () => $('dlg').close();
-$('dlg-save').onclick = () => {
-  const name = $('f-name').value.trim();
-  if (!name) { alert('Please enter a product name.'); return; }
-  const p = {
-    id: name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,28) || ('p'+Date.now()),
-    name, cat:$('f-cat').value, img:$('f-img').value.trim(),
-    mv:+$('f-mv').value || 0, lk:+$('f-lk').value || 0,
-    rating:+$('f-rating').value || 4.8, reviews:+$('f-reviews').value || 0,
-    organic: $('f-org').value === 'true'
+
+$('f-file').onchange = e => {
+  const file = e.target.files[0]; if (!file) return;
+  const img = new Image();
+  img.onload = () => {
+    const s = Math.min(img.width, img.height);
+    const c = document.createElement('canvas');
+    c.width = c.height = 800;
+    c.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 800, 800);
+    const dataUrl = c.toDataURL('image/jpeg', 0.85);
+    $('f-prev').src = dataUrl;
+    const base = ($('f-name').value.trim() || file.name)
+      .toLowerCase().replace(/\.[^.]+$/, '').replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '').slice(0, 26) || ('p' + Date.now());
+    const fname = base + '.jpg';
+    pendingImgs = pendingImgs.filter(x => x.name !== fname);
+    pendingImgs.push({ name: fname, b64: dataUrl.split(',')[1] });
+    $('f-img').value = 'assets/' + fname;
+    msg('Photo ready - it uploads when you publish.');
   };
-  if (editIdx < 0) DATA.products.push(p); else { p.id = DATA.products[editIdx].id; DATA.products[editIdx] = p; }
-  $('dlg').close(); renderProducts();
+  img.src = URL.createObjectURL(file);
 };
 
-/* ---------- stores ---------- */
+$('dlg-save').onclick = () => {
+  const name = $('f-name').value.trim();
+  if (!name) { alert('Enter a product name.'); return; }
+  const p = {
+    id: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 28) || ('p' + Date.now()),
+    name: name, cat: $('f-cat').value, img: $('f-img').value.trim(),
+    mv: +$('f-mv').value || 0, lk: +$('f-lk').value || 0,
+    rating: +$('f-rating').value || 4.8, reviews: +$('f-reviews').value || 0,
+    organic: $('f-org').value === 'true'
+  };
+  if (editIdx < 0) DATA.products.push(p);
+  else { p.id = DATA.products[editIdx].id; DATA.products[editIdx] = p; }
+  $('dlg').close(); renderProducts();
+  msg('Product saved - click Save & publish.');
+};
+
 function renderStores() {
   $('stores').innerHTML = Object.keys(DATA.stores).map(k => {
     const s = DATA.stores[k];
-    return `<div class="card" style="background:#fafcf9">
-      <span class="pill">${k === 'MV' ? '🇲🇻 Maldives' : '🇱🇰 Sri Lanka'}</span>
-      <div class="row" style="margin-top:12px">
-        <div><label>Store name</label><input data-s="${k}" data-f="name" value="${s.name||''}"></div>
-        <div><label>Area</label><input data-s="${k}" data-f="area" value="${s.area||''}"></div>
-        <div><label>Phone</label><input data-s="${k}" data-f="phone" value="${s.phone||''}"></div>
-      </div>
-      <div><label>Delivery note</label><input data-s="${k}" data-f="note" value="${s.note||''}"></div>
-    </div>`;
+    return '<div class="card" style="background:#fafcf9">' +
+      '<span class="pill">' + (k === 'MV' ? 'Maldives' : 'Sri Lanka') + '</span>' +
+      '<div class="row" style="margin-top:11px">' +
+        '<div><label>Store name</label><input data-s="' + k + '" data-f="name" value="' + (s.name || '') + '"></div>' +
+        '<div><label>Area</label><input data-s="' + k + '" data-f="area" value="' + (s.area || '') + '"></div>' +
+        '<div><label>Phone</label><input data-s="' + k + '" data-f="phone" value="' + (s.phone || '') + '"></div>' +
+      '</div>' +
+      '<div><label>Delivery note</label><input data-s="' + k + '" data-f="note" value="' + (s.note || '') + '"></div>' +
+    '</div>';
   }).join('');
   $('stores').oninput = e => {
     const t = e.target;
-    if (t.dataset.s) DATA.stores[t.dataset.s][t.dataset.f] = t.value;
+    if (t.dataset.s) { DATA.stores[t.dataset.s][t.dataset.f] = t.value; msg('Store edited - click Save & publish.'); }
   };
 }
 
-/* ---------- orders ---------- */
 function renderOrders() {
   const keys = Object.keys(ORDERS.orders).filter(k => k !== '_help');
   $('olist').innerHTML = keys.map(k => {
     const o = ORDERS.orders[k];
-    return `<div class="prow">
-      <div class="thumb">📦</div>
-      <div class="info"><b>${k} — ${o.customer||''}</b>
-        <span><span class="pill">${(o.status||'').replace(/_/g,' ')}</span> &nbsp; ${o.total||''} · ${o.placed||''}</span></div>
-      <div class="acts"><button data-op="${k}">🖨 Label</button><button data-oe="${k}">Edit</button><button data-od="${k}">Delete</button></div>
-    </div>`;
+    return '<div class="prow"><div class="thumb">&#128230;</div>' +
+      '<div class="info"><b>' + k + ' - ' + (o.customer || '') + '</b>' +
+      '<span><span class="pill">' + (o.status || '').replace(/_/g, ' ') + '</span> ' +
+      (o.total || '') + ' &middot; ' + (o.placed || '') + '</span></div>' +
+      '<div class="acts"><button data-op="' + k + '">Label</button>' +
+      '<button data-oe="' + k + '">Edit</button><button data-od="' + k + '">Delete</button></div></div>';
   }).join('') || '<p style="color:var(--muted)">No orders yet.</p>';
 }
+$('o-save').onclick = () => {
+  const ref = $('o-ref').value.trim().toUpperCase();
+  if (!ref) { alert('Enter the order reference.'); return; }
+  ORDERS.orders[ref] = {
+    customer: $('o-cust').value.trim(), placed: $('o-date').value, status: $('o-status').value,
+    items: $('o-items').value.trim(), total: $('o-total').value.trim(), note: $('o-note').value.trim(),
+    phone: $('o-phone').value.trim(), address: $('o-addr').value.trim()
+  };
+  ['o-ref','o-cust','o-total','o-items','o-note','o-phone','o-addr'].forEach(i => $(i).value = '');
+  renderOrders(); msg('Order saved - click Save & publish.');
+};
+
 function printLabel(ref) {
   const o = ORDERS.orders[ref]; if (!o) return;
   const w = window.open('', '_blank', 'width=800,height=650');
-  w.document.write(`<!DOCTYPE html><html><head><title>Label ${ref}</title>
-  <style>
-    @page{size:100mm 150mm;margin:6mm}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,Helvetica,sans-serif;color:#123a22;padding:10px}
-    .lab{border:3px solid #123a22;border-radius:10px;padding:14px;height:100%}
-    .top{display:flex;align-items:center;gap:10px;border-bottom:2px solid #123a22;padding-bottom:9px}
-    .top img{width:44px;height:44px}
-    .top b{font-size:16px;line-height:1.2}
-    .top span{display:block;font-size:9px;letter-spacing:2px;color:#1e6b3a}
-    .ref{background:#123a22;color:#fff;text-align:center;padding:9px;border-radius:7px;margin:11px 0;
-      font-size:21px;font-weight:bold;letter-spacing:2px}
-    h4{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:#5a6a55;margin-bottom:2px}
-    .blk{margin-bottom:10px;font-size:13px;line-height:1.45}
-    .blk b{font-size:15px}
-    .items{background:#f1f7ee;border-radius:7px;padding:9px;font-size:12px;min-height:52px}
-    .foot{border-top:2px dashed #b9ccb2;margin-top:10px;padding-top:8px;display:flex;
-      justify-content:space-between;font-size:11px}
-    .foot b{font-size:15px;color:#1e6b3a}
-    .fragile{margin-top:9px;text-align:center;background:#5eb320;color:#fff;font-weight:bold;
-      padding:6px;border-radius:6px;font-size:11px;letter-spacing:1.5px}
-    @media print{.noprint{display:none}}
-  </style></head><body>
-  <div class="lab">
-    <div class="top">
-      <img src="assets/emblem.png">
-      <div><b>FRESH LANKA GLOBAL</b><span>SUPERMARKET &amp; EXPORTS</span></div>
-    </div>
-    <div class="ref">${ref}</div>
-    <div class="blk"><h4>Deliver to</h4><b>${o.customer||''}</b><br>${(o.address||'—').replace(/\n/g,'<br>')}<br>${o.phone||''}</div>
-    <div class="blk"><h4>Items</h4><div class="items">${o.items||''}</div></div>
-    ${o.note ? `<div class="blk"><h4>Note</h4>${o.note}</div>` : ''}
-    <div class="foot">
-      <div><h4>Order date</h4>${o.placed||''}</div>
-      <div style="text-align:right"><h4>Total</h4><b>${o.total||''}</b></div>
-    </div>
-    <div class="fragile">🌿 KEEP COOL · HANDLE WITH CARE · PERISHABLE</div>
-  </div>
-  <p class="noprint" style="text-align:center;margin-top:14px">
-    <button onclick="window.print()" style="padding:10px 22px;font-size:15px;background:#1e6b3a;color:#fff;
-      border:0;border-radius:8px;cursor:pointer">🖨 Print this label</button></p>
-  </body></html>`);
+  w.document.write('<!DOCTYPE html><html><head><title>Label ' + ref + '</title><style>' +
+    '@page{size:100mm 150mm;margin:6mm}*{box-sizing:border-box;margin:0;padding:0}' +
+    'body{font-family:Arial,sans-serif;color:#123a22;padding:10px}' +
+    '.lab{border:3px solid #123a22;border-radius:10px;padding:14px}' +
+    '.top{display:flex;align-items:center;gap:10px;border-bottom:2px solid #123a22;padding-bottom:9px}' +
+    '.top img{width:44px;height:44px}.top b{font-size:16px}' +
+    '.top span{display:block;font-size:9px;letter-spacing:2px;color:#1e6b3a}' +
+    '.ref{background:#123a22;color:#fff;text-align:center;padding:9px;border-radius:7px;margin:11px 0;' +
+    'font-size:21px;font-weight:bold;letter-spacing:2px}' +
+    'h4{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:#5a6a55;margin-bottom:2px}' +
+    '.blk{margin-bottom:10px;font-size:13px;line-height:1.45}.blk b{font-size:15px}' +
+    '.items{background:#f1f7ee;border-radius:7px;padding:9px;font-size:12px;min-height:52px}' +
+    '.foot{border-top:2px dashed #b9ccb2;margin-top:10px;padding-top:8px;display:flex;' +
+    'justify-content:space-between;font-size:11px}.foot b{font-size:15px;color:#1e6b3a}' +
+    '.fragile{margin-top:9px;text-align:center;background:#5eb320;color:#fff;font-weight:bold;' +
+    'padding:6px;border-radius:6px;font-size:11px;letter-spacing:1.5px}' +
+    '@media print{.noprint{display:none}}</style></head><body>' +
+    '<div class="lab"><div class="top"><img src="assets/emblem.png">' +
+    '<div><b>FRESH LANKA GLOBAL</b><span>SUPERMARKET &amp; EXPORTS</span></div></div>' +
+    '<div class="ref">' + ref + '</div>' +
+    '<div class="blk"><h4>Deliver to</h4><b>' + (o.customer || '') + '</b><br>' +
+      (o.address || '-') + '<br>' + (o.phone || '') + '</div>' +
+    '<div class="blk"><h4>Items</h4><div class="items">' + (o.items || '') + '</div></div>' +
+    (o.note ? '<div class="blk"><h4>Note</h4>' + o.note + '</div>' : '') +
+    '<div class="foot"><div><h4>Order date</h4>' + (o.placed || '') + '</div>' +
+    '<div style="text-align:right"><h4>Total</h4><b>' + (o.total || '') + '</b></div></div>' +
+    '<div class="fragile">KEEP COOL &middot; HANDLE WITH CARE &middot; PERISHABLE</div></div>' +
+    '<p class="noprint" style="text-align:center;margin-top:14px">' +
+    '<button onclick="window.print()" style="padding:10px 22px;font-size:15px;background:#1e6b3a;' +
+    'color:#fff;border:0;border-radius:8px;cursor:pointer">Print this label</button></p>' +
+    '</body></html>');
   w.document.close();
 }
-
 $('olist').onclick = e => {
   const pr = e.target.closest('[data-op]');
   if (pr) { printLabel(pr.dataset.op); return; }
   const ed = e.target.closest('[data-oe]'), del = e.target.closest('[data-od]');
   if (ed) {
     const k = ed.dataset.oe, o = ORDERS.orders[k];
-    $('o-ref').value=k; $('o-cust').value=o.customer||''; $('o-total').value=o.total||'';
-    $('o-date').value=o.placed||''; $('o-status').value=o.status||'received';
-    $('o-items').value=o.items||''; $('o-note').value=o.note||'';
-    $('o-phone').value=o.phone||''; $('o-addr').value=o.address||'';
-    window.scrollTo({top:0,behavior:'smooth'});
+    $('o-ref').value = k; $('o-cust').value = o.customer || ''; $('o-total').value = o.total || '';
+    $('o-date').value = o.placed || ''; $('o-status').value = o.status || 'received';
+    $('o-items').value = o.items || ''; $('o-note').value = o.note || '';
+    $('o-phone').value = o.phone || ''; $('o-addr').value = o.address || '';
+    window.scrollTo({ top:0, behavior:'smooth' });
   }
   if (del) {
     const k = del.dataset.od;
-    if (confirm('Delete order ' + k + '?')) { delete ORDERS.orders[k]; renderOrders(); }
+    if (confirm('Delete order ' + k + '?')) { delete ORDERS.orders[k]; renderOrders(); msg('Deleted - click Save & publish.'); }
   }
-};
-$('o-save').onclick = () => {
-  const ref = $('o-ref').value.trim().toUpperCase();
-  if (!ref) { alert('Enter the order reference.'); return; }
-  ORDERS.orders[ref] = {
-    customer:$('o-cust').value.trim(), placed:$('o-date').value,
-    status:$('o-status').value, items:$('o-items').value.trim(),
-    total:$('o-total').value.trim(), note:$('o-note').value.trim(),
-    phone:$('o-phone').value.trim(), address:$('o-addr').value.trim()
-  };
-  ['o-ref','o-cust','o-total','o-items','o-note','o-phone','o-addr'].forEach(i => $(i).value='');
-  renderOrders();
-  alert('Order saved. Now click "Save orders.json" and upload it to GitHub.');
-};
-
-/* ---------- download helpers ---------- */
-function download(name, obj) {
-  const blob = new Blob([JSON.stringify(obj, null, 2)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob); a.download = name; a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  alert('Downloaded ' + name + '\n\nNow upload this file to your GitHub repo (same filename) — the website updates automatically.');
-}
-$('save-products').onclick = () => download('products.json', DATA);
-$('save-stores').onclick   = () => download('products.json', DATA);
-$('save-orders').onclick   = () => download('orders.json', ORDERS);
-
-/* ---------- image prep ---------- */
-let readyBlob = null;
-$('imgfile').onchange = e => {
-  const file = e.target.files[0]; if (!file) return;
-  if (!$('imgname').value) $('imgname').value = file.name.replace(/\.[^.]+$/,'').toLowerCase().replace(/[^a-z0-9]+/g,'-') + '.jpg';
-  const img = new Image();
-  img.onload = () => {
-    const s = Math.min(img.width, img.height), c = document.createElement('canvas');
-    c.width = c.height = 800;
-    c.getContext('2d').drawImage(img, (img.width-s)/2, (img.height-s)/2, s, s, 0, 0, 800, 800);
-    $('imgprev').src = c.toDataURL('image/jpeg', .88);
-    $('imgprev').style.display = 'block';
-    c.toBlob(b => readyBlob = b, 'image/jpeg', .88);
-  };
-  img.src = URL.createObjectURL(file);
-};
-$('imgdl').onclick = () => {
-  if (!readyBlob) { alert('Choose a photo first.'); return; }
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(readyBlob);
-  a.download = ($('imgname').value.trim() || 'product.jpg').replace(/[^a-z0-9.\-]/gi,'-');
-  a.click();
-  alert('Photo ready!\n\nUpload it to GitHub → assets folder, then set the product Image to:\nassets/' + a.download);
 };
 
 load();
