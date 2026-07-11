@@ -148,6 +148,10 @@ dialog::backdrop{background:rgba(18,58,34,.5)}
         </div>
       </div>
       <div style="margin-bottom:12px"><label>Items</label><input id="o-items" placeholder="2 × Premium Betel Leaves"></div>
+      <div class="row">
+        <div><label>Customer phone</label><input id="o-phone" placeholder="+960 7xx xxxx"></div>
+        <div><label>Delivery address</label><input id="o-addr" placeholder="H. Villa, Majeedhee Magu, Malé"></div>
+      </div>
       <div style="margin-bottom:14px"><label>Note to customer (optional)</label><input id="o-note" placeholder="Arriving in Malé by 4pm."></div>
       <button class="btn" id="o-save">＋ Add / update this order</button>
 
@@ -323,17 +327,68 @@ function renderOrders() {
       <div class="thumb">📦</div>
       <div class="info"><b>${k} — ${o.customer||''}</b>
         <span><span class="pill">${(o.status||'').replace(/_/g,' ')}</span> &nbsp; ${o.total||''} · ${o.placed||''}</span></div>
-      <div class="acts"><button data-oe="${k}">Edit</button><button data-od="${k}">Delete</button></div>
+      <div class="acts"><button data-op="${k}">🖨 Label</button><button data-oe="${k}">Edit</button><button data-od="${k}">Delete</button></div>
     </div>`;
   }).join('') || '<p style="color:var(--muted)">No orders yet.</p>';
 }
+function printLabel(ref) {
+  const o = ORDERS.orders[ref]; if (!o) return;
+  const w = window.open('', '_blank', 'width=800,height=650');
+  w.document.write(`<!DOCTYPE html><html><head><title>Label ${ref}</title>
+  <style>
+    @page{size:100mm 150mm;margin:6mm}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;color:#123a22;padding:10px}
+    .lab{border:3px solid #123a22;border-radius:10px;padding:14px;height:100%}
+    .top{display:flex;align-items:center;gap:10px;border-bottom:2px solid #123a22;padding-bottom:9px}
+    .top img{width:44px;height:44px}
+    .top b{font-size:16px;line-height:1.2}
+    .top span{display:block;font-size:9px;letter-spacing:2px;color:#1e6b3a}
+    .ref{background:#123a22;color:#fff;text-align:center;padding:9px;border-radius:7px;margin:11px 0;
+      font-size:21px;font-weight:bold;letter-spacing:2px}
+    h4{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:#5a6a55;margin-bottom:2px}
+    .blk{margin-bottom:10px;font-size:13px;line-height:1.45}
+    .blk b{font-size:15px}
+    .items{background:#f1f7ee;border-radius:7px;padding:9px;font-size:12px;min-height:52px}
+    .foot{border-top:2px dashed #b9ccb2;margin-top:10px;padding-top:8px;display:flex;
+      justify-content:space-between;font-size:11px}
+    .foot b{font-size:15px;color:#1e6b3a}
+    .fragile{margin-top:9px;text-align:center;background:#5eb320;color:#fff;font-weight:bold;
+      padding:6px;border-radius:6px;font-size:11px;letter-spacing:1.5px}
+    @media print{.noprint{display:none}}
+  </style></head><body>
+  <div class="lab">
+    <div class="top">
+      <img src="assets/emblem.png">
+      <div><b>FRESH LANKA GLOBAL</b><span>SUPERMARKET &amp; EXPORTS</span></div>
+    </div>
+    <div class="ref">${ref}</div>
+    <div class="blk"><h4>Deliver to</h4><b>${o.customer||''}</b><br>${(o.address||'—').replace(/\n/g,'<br>')}<br>${o.phone||''}</div>
+    <div class="blk"><h4>Items</h4><div class="items">${o.items||''}</div></div>
+    ${o.note ? `<div class="blk"><h4>Note</h4>${o.note}</div>` : ''}
+    <div class="foot">
+      <div><h4>Order date</h4>${o.placed||''}</div>
+      <div style="text-align:right"><h4>Total</h4><b>${o.total||''}</b></div>
+    </div>
+    <div class="fragile">🌿 KEEP COOL · HANDLE WITH CARE · PERISHABLE</div>
+  </div>
+  <p class="noprint" style="text-align:center;margin-top:14px">
+    <button onclick="window.print()" style="padding:10px 22px;font-size:15px;background:#1e6b3a;color:#fff;
+      border:0;border-radius:8px;cursor:pointer">🖨 Print this label</button></p>
+  </body></html>`);
+  w.document.close();
+}
+
 $('olist').onclick = e => {
+  const pr = e.target.closest('[data-op]');
+  if (pr) { printLabel(pr.dataset.op); return; }
   const ed = e.target.closest('[data-oe]'), del = e.target.closest('[data-od]');
   if (ed) {
     const k = ed.dataset.oe, o = ORDERS.orders[k];
     $('o-ref').value=k; $('o-cust').value=o.customer||''; $('o-total').value=o.total||'';
     $('o-date').value=o.placed||''; $('o-status').value=o.status||'received';
     $('o-items').value=o.items||''; $('o-note').value=o.note||'';
+    $('o-phone').value=o.phone||''; $('o-addr').value=o.address||'';
     window.scrollTo({top:0,behavior:'smooth'});
   }
   if (del) {
@@ -347,9 +402,10 @@ $('o-save').onclick = () => {
   ORDERS.orders[ref] = {
     customer:$('o-cust').value.trim(), placed:$('o-date').value,
     status:$('o-status').value, items:$('o-items').value.trim(),
-    total:$('o-total').value.trim(), note:$('o-note').value.trim()
+    total:$('o-total').value.trim(), note:$('o-note').value.trim(),
+    phone:$('o-phone').value.trim(), address:$('o-addr').value.trim()
   };
-  ['o-ref','o-cust','o-total','o-items','o-note'].forEach(i => $(i).value='');
+  ['o-ref','o-cust','o-total','o-items','o-note','o-phone','o-addr'].forEach(i => $(i).value='');
   renderOrders();
   alert('Order saved. Now click "Save orders.json" and upload it to GitHub.');
 };

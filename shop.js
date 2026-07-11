@@ -32,7 +32,7 @@ function renderStore() {
 function renderProducts() {
   const list = PRODUCTS.filter(p => filter === 'all' || p.cat === filter);
   $('grid').innerHTML = list.map(p => `
-    <article class="pcard reveal">
+    <article class="pcard">
       <div class="pimg">
         ${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">`
                 : `<div class="ph">🌿</div>`}
