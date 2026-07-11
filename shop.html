@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.className+=' js'</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Online — Fresh Lanka Global (Pvt) Ltd</title>
+<meta name="description" content="Order fresh Sri Lankan vegetables, fruits, premium betel leaves and groceries online for delivery in the Maldives and Sri Lanka.">
+<link rel="icon" href="assets/emblem.png">
+<link rel="canonical" href="https://freshlankaglobal.com/shop.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#123a22">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fresh Lanka Global (Pvt) Ltd">
+<meta property="og:title" content="Shop Online — Fresh Lanka Global (Pvt) Ltd">
+<meta property="og:description" content="Order fresh Sri Lankan vegetables, fruits, premium betel leaves and groceries online for delivery in the Maldives and Sri Lanka.">
+<meta property="og:url" content="https://freshlankaglobal.com/shop.html">
+<meta property="og:image" content="https://freshlankaglobal.com/assets/betel.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container wrap">
+    <span>🚚 <b>Free delivery</b> on orders over MVR 500</span>
+    <span>🌿 100% Fresh Produce</span>
+    <span>🇱🇰 Direct from Sri Lankan farms</span>
+  </div>
+</div>
+
+<header class="site-header over-dark">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <img src="assets/emblem.png" alt="Fresh Lanka emblem">
+      <div class="brand-text"><b>FRESH LANKA</b><span>Global (Pvt) Ltd</span></div>
+    </a>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="products.html">Our Products</a>
+      <a href="quality.html">Why Fresh Lanka</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="track.html" class="btn btn--leaf">Track order</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Fresh Lanka Super · Online Store</span>
+    <h1>Shop fresh, delivered to your door</h1>
+    <p class="lede">Farm-fresh vegetables, tropical fruits, premium betel leaves and Sri Lankan groceries — order online for delivery in the Maldives and Sri Lanka.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="betel-banner reveal">
+      <img src="assets/betel-hero.jpg" alt="Fresh premium betel leaves">
+      <div class="bb-in">
+        <span class="eyebrow" style="color:var(--leaf-2)">Signature Export</span>
+        <h2>Premium Betel Leaves</h2>
+        <p>Hand-picked, graded and packed the same day — our signature product, trusted by buyers worldwide.</p>
+        <button class="btn btn--leaf" onclick="document.getElementById('grid').scrollIntoView({behavior:'smooth'})">Shop betel leaves</button>
+      </div>
+    </div>
+
+    <div class="shop-toolbar reveal">
+      <div class="chips-row" id="filters">
+        <button class="chip-btn active" data-cat="all">All products</button>
+        <button class="chip-btn" data-cat="Betel">Betel Leaves</button>
+        <button class="chip-btn" data-cat="Vegetables">Vegetables</button>
+        <button class="chip-btn" data-cat="Fruits">Fruits</button>
+        <button class="chip-btn" data-cat="Groceries">Groceries</button>
+      </div>
+      <div class="country-pick">
+        <label for="country">Deliver to</label>
+        <select id="country">
+          <option value="MV">🇲🇻 Maldives</option>
+          <option value="LK">🇱🇰 Sri Lanka</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="store-note reveal" id="store-note"></div>
+
+    <div class="products" id="grid"></div>
+  </div>
+</section>
+
+<button class="cart-fab" id="cart-fab" aria-label="Open cart">
+  🛒<span class="count" id="cart-count">0</span>
+</button>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+
+<aside class="cart" id="cart" aria-label="Shopping cart">
+  <div class="cart-head">
+    <h3 id="cart-title">Your Basket</h3>
+    <button class="cart-close" id="cart-close" aria-label="Close">✕</button>
+  </div>
+
+  <div class="cart-items" id="cart-items"></div>
+
+  <div class="cart-foot" id="cart-foot">
+    <div class="cart-total"><span>Total</span><b id="cart-total">—</b></div>
+    <button class="btn btn--leaf" style="width:100%" id="to-checkout">Proceed to checkout</button>
+  </div>
+
+  <div class="checkout" id="checkout" style="display:none">
+    <h4>Delivery details</h4>
+    <p class="note">We'll confirm your order by phone or email before delivery.</p>
+    <form id="order-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+      <input type="hidden" name="subject" value="🛒 New online order — Fresh Lanka Global">
+      <input type="hidden" name="from_name" value="Fresh Lanka Global Shop">
+      <input type="hidden" name="order_ref" id="f-ref">
+      <input type="hidden" name="order_items" id="f-items">
+      <input type="hidden" name="order_total" id="f-total">
+      <input type="hidden" name="deliver_to" id="f-country">
+      <input type="hidden" name="fulfilling_store" id="f-store">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="form-row"><label for="c-name">Full name</label><input id="c-name" name="customer_name" required></div>
+      <div class="form-row"><label for="c-phone">Phone number</label><input id="c-phone" name="customer_phone" required></div>
+      <div class="form-row"><label for="c-email">Email</label><input id="c-email" name="customer_email" type="email" required></div>
+      <div class="form-row"><label for="c-addr">Delivery address</label><textarea id="c-addr" name="delivery_address" rows="3" required></textarea></div>
+      <div class="form-row"><label for="c-note">Notes (optional)</label><textarea id="c-note" name="notes" rows="2"></textarea></div>
+
+      <div class="form-row">
+        <label>Payment method</label>
+        <div class="pay-opts">
+          <label class="pay-opt"><input type="radio" name="payment_method" value="Cash on delivery" checked>
+            <span><b>Cash on delivery</b><span>Pay the driver when your order arrives.</span></span></label>
+          <label class="pay-opt"><input type="radio" name="payment_method" value="Bank transfer">
+            <span><b>Bank transfer</b><span>We'll send account details to confirm your order.</span></span></label>
+          <label class="pay-opt"><input type="radio" name="payment_method" value="Card (on delivery)">
+            <span><b>Card on delivery</b><span>Pay by card at the door where available.</span></span></label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn--leaf" style="width:100%;margin-top:6px" id="place-order">Place order</button>
+      <button type="button" class="btn btn--ghost" style="width:100%;margin-top:8px" id="back-cart">← Back to basket</button>
+    </form>
+  </div>
+
+  <div class="order-ok" id="order-ok" style="display:none">
+    <div class="tick">✓</div>
+    <h3>Order received!</h3>
+    <p style="color:var(--muted)">Thank you — we've received your order and will contact you shortly to confirm delivery.</p>
+    <div class="order-ref" id="ok-ref"></div>
+    <p style="font-size:.85rem;color:var(--muted)">Save this reference — you can use it on our <a href="track.html" style="color:var(--green);font-weight:700">Track Order</a> page.</p>
+    <button class="btn btn--leaf" style="width:100%;margin-top:10px" onclick="location.reload()">Continue shopping</button>
+  </div>
+</aside>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">
+          <img src="assets/emblem.png" alt="" width="46" height="46" style="border-radius:12px">
+          <div class="brand-text"><b>FRESH LANKA</b><span>Global (Pvt) Ltd</span></div>
+        </div>
+        <p>Fresh from Sri Lankan soil to the world's tables — supermarket retail and global fresh-produce exports.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">Our Products</a>
+        <a href="quality.html">Why Fresh Lanka</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="products.html">Fresh Vegetables</a>
+        <a href="products.html">Tropical Fruits</a>
+        <a href="products.html">Betel Leaves</a>
+        <a href="products.html">Sri Lankan Groceries</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:freshlankapvtltd@gmail.com">freshlankapvtltd@gmail.com</a>
+        <a href="tel:+94768533361">+94 76 8533361</a>
+        <a href="tel:+94715199968">+94 71 519 9968</a>
+        <a href="tel:+9609460275">+960 9460275</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Fresh Lanka Global (Pvt) Ltd. All rights reserved.</span>
+      <span>Established 2026 · Sri Lanka</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="shop.js"></script>
+</body>
+</html>

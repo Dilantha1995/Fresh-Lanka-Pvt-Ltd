@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.className+=' js'</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Your Order — Fresh Lanka Global (Pvt) Ltd</title>
+<meta name="description" content="Track the status of your Fresh Lanka Global order using your order reference.">
+<link rel="icon" href="assets/emblem.png">
+<link rel="canonical" href="https://freshlankaglobal.com/track.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#123a22">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .track-box{max-width:640px;margin:0 auto}
+  .track-form{display:flex;gap:10px;margin-bottom:26px}
+  .track-form input{flex:1;padding:.95rem 1.1rem;border:1.5px solid var(--line);border-radius:14px;
+    font:inherit;font-size:1rem;text-transform:uppercase;letter-spacing:.06em;outline:none}
+  .track-form input:focus{border-color:var(--leaf)}
+  .steps{list-style:none;padding:0;margin:26px 0 0}
+  .steps li{display:flex;gap:16px;padding-bottom:26px;position:relative}
+  .steps li:not(:last-child):before{content:'';position:absolute;left:17px;top:36px;bottom:0;
+    width:2px;background:var(--line)}
+  .steps li.done:not(:last-child):before{background:var(--leaf)}
+  .steps .dot{width:36px;height:36px;border-radius:50%;flex:none;display:flex;align-items:center;
+    justify-content:center;background:var(--paper-2);border:2px solid var(--line);color:var(--muted);
+    font-weight:800;font-size:.9rem;z-index:1}
+  .steps li.done .dot{background:var(--leaf);border-color:var(--leaf);color:#fff}
+  .steps li.current .dot{background:var(--green);border-color:var(--green);color:#fff;
+    box-shadow:0 0 0 5px rgba(94,179,32,.18)}
+  .steps b{display:block;color:var(--forest);font-size:1rem;margin-bottom:2px}
+  .steps span{color:var(--muted);font-size:.88rem}
+  .order-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;
+    box-shadow:var(--shadow-sm);margin-top:8px}
+  .order-card .oc-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:6px}
+  .order-card .oc-head b{font-family:var(--display);font-size:1.3rem;color:var(--green)}
+  .err{background:#fdecec;border:1px solid #f3c4c4;color:#a13636;padding:14px 18px;border-radius:14px;
+    font-size:.94rem}
+</style>
+</head>
+<body>
+
+<header class="site-header over-dark">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <img src="assets/emblem.png" alt="Fresh Lanka emblem">
+      <div class="brand-text"><b>FRESH LANKA</b><span>Global (Pvt) Ltd</span></div>
+    </a>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="products.html">Our Products</a>
+      <a href="quality.html">Why Fresh Lanka</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="track.html" class="btn btn--leaf active">Track order</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Order Status</span>
+    <h1>Track your order</h1>
+    <p class="lede">Enter the order reference from your confirmation to see where your delivery is.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container track-box">
+    <div class="track-form">
+      <input id="ref" placeholder="e.g. FLG-DEMO01" autocomplete="off">
+      <button class="btn btn--leaf" id="go">Track</button>
+    </div>
+    <div id="result"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">
+          <img src="assets/emblem.png" alt="" width="46" height="46" style="border-radius:12px">
+          <div class="brand-text"><b>FRESH LANKA</b><span>Global (Pvt) Ltd</span></div>
+        </div>
+        <p>Fresh from Sri Lankan soil to the world's tables — supermarket retail and global fresh-produce exports.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">Our Products</a>
+        <a href="quality.html">Why Fresh Lanka</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="products.html">Fresh Vegetables</a>
+        <a href="products.html">Tropical Fruits</a>
+        <a href="products.html">Betel Leaves</a>
+        <a href="products.html">Sri Lankan Groceries</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:freshlankapvtltd@gmail.com">freshlankapvtltd@gmail.com</a>
+        <a href="tel:+94768533361">+94 76 8533361</a>
+        <a href="tel:+94715199968">+94 71 519 9968</a>
+        <a href="tel:+9609460275">+960 9460275</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Fresh Lanka Global (Pvt) Ltd. All rights reserved.</span>
+      <span>Established 2026 · Sri Lanka</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+const STAGES = [
+  ['received',        'Order received',    'We have your order and will confirm shortly.'],
+  ['packing',         'Packing',           'Your items are being picked and packed fresh.'],
+  ['shipped',         'Dispatched',        'Your order has left our store.'],
+  ['out_for_delivery','Out for delivery',  'Our driver is on the way to you.'],
+  ['delivered',       'Delivered',         'Your order has been delivered. Enjoy!']
+];
+
+async function track() {
+  const ref = document.getElementById('ref').value.trim().toUpperCase();
+  const box = document.getElementById('result');
+  if (!ref) return;
+  box.innerHTML = '<p style="color:var(--muted)">Looking up your order…</p>';
+  try {
+    const res = await fetch('orders.json?v=' + Date.now());
+    const data = await res.json();
+    const o = data.orders[ref];
+    if (!o) {
+      box.innerHTML = `<div class="err">We couldn't find order <b>${ref}</b>. Please check the reference,
+        or contact us and we'll help right away.</div>`;
+      return;
+    }
+    const idx = STAGES.findIndex(s => s[0] === o.status);
+    box.innerHTML = `
+      <div class="order-card">
+        <div class="oc-head">
+          <div><span class="pcat">Order reference</span><b>${ref}</b></div>
+          <div style="text-align:right"><span class="pcat">Total</span><b>${o.total || '—'}</b></div>
+        </div>
+        <p style="color:var(--muted);font-size:.92rem;margin:12px 0 0">
+          <b style="color:var(--forest)">${o.customer || ''}</b><br>${o.items || ''}<br>
+          <span style="font-size:.85rem">Placed ${o.placed || ''}</span>
+        </p>
+        ${o.note ? `<p style="margin-top:12px;background:var(--paper-2);border-radius:12px;padding:12px 14px;font-size:.9rem">📦 ${o.note}</p>` : ''}
+        <ul class="steps">
+          ${STAGES.map((s, i) => `
+            <li class="${i < idx ? 'done' : i === idx ? 'current done' : ''}">
+              <div class="dot">${i <= idx ? '✓' : i + 1}</div>
+              <div><b>${s[1]}</b><span>${s[2]}</span></div>
+            </li>`).join('')}
+        </ul>
+      </div>`;
+  } catch (e) {
+    box.innerHTML = '<div class="err">Sorry, we could not load order information right now. Please try again.</div>';
+  }
+}
+document.getElementById('go').addEventListener('click', track);
+document.getElementById('ref').addEventListener('keydown', e => { if (e.key === 'Enter') track(); });
+</script>
+</body>
+</html>

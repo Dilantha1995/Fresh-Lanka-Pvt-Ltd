@@ -1,0 +1,13 @@
+{
+  "_help": "EDIT THIS FILE TO UPDATE ORDER STATUS. Copy an entry, paste the order reference from the email you received, and change 'status' to one of: received, packing, shipped, out_for_delivery, delivered",
+  "orders": {
+    "FLG-DEMO01": {
+      "customer": "Demo Customer",
+      "placed": "2026-07-10",
+      "status": "shipped",
+      "items": "2 × Premium Betel Leaves (bundle of 100)",
+      "total": "MVR 150",
+      "note": "Arriving in Malé by 4pm."
+    }
+  }
+}
