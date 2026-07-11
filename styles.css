@@ -135,16 +135,30 @@ p{margin:0 0 1rem}
 .nav a.active::after{content:"";display:block;height:2px;width:60%;background:var(--leaf);border-radius:2px;margin:2px auto 0}
 .nav .btn{margin-left:8px;padding:.7rem 1.2rem}
 
-/* header states: transparent over hero, solid after scroll */
-.site-header.on-light{background:rgba(255,255,255,.85);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
-.site-header.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(18,58,34,.08);padding:10px 0}
+/* header: ALWAYS the same light bar (never transparent, never inverts) */
+.site-header,
+.site-header.on-light,
+.site-header.over-dark,
+.site-header.scrolled{
+  background:#eef1ec;
+  backdrop-filter:none;
+  box-shadow:0 1px 0 var(--line);
+}
+.site-header.scrolled{box-shadow:0 4px 24px rgba(18,58,34,.08);padding:10px 0}
 .site-header.scrolled .brand img{width:40px;height:40px}
-/* when transparent over a dark hero */
-.site-header.over-dark:not(.scrolled) .brand-text b,
-.site-header.over-dark:not(.scrolled) .nav a{color:#fff}
-.site-header.over-dark:not(.scrolled) .brand-text span{color:var(--leaf-2)}
-.site-header.over-dark:not(.scrolled) .nav a:hover{background:rgba(255,255,255,.14)}
-.site-header.over-dark:not(.scrolled) .nav-toggle span{background:#fff}
+/* text stays dark in every state */
+.site-header .brand-text b,
+.site-header.over-dark:not(.scrolled) .brand-text b{color:var(--forest)}
+.site-header .brand-text span,
+.site-header.over-dark:not(.scrolled) .brand-text span{color:var(--green)}
+.site-header .nav a,
+.site-header.over-dark:not(.scrolled) .nav a{color:var(--forest)}
+.site-header .nav a:hover,
+.site-header.over-dark:not(.scrolled) .nav a:hover{background:rgba(30,107,58,.1)}
+.site-header .nav a.btn,
+.site-header.over-dark:not(.scrolled) .nav a.btn{color:#fff}
+.site-header .nav-toggle span,
+.site-header.over-dark:not(.scrolled) .nav-toggle span{background:var(--forest)}
 
 .nav-toggle{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;
   flex-direction:column;gap:5px;align-items:center;justify-content:center}

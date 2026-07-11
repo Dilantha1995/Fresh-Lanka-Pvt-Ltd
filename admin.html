@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Fresh Lanka Global</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/emblem.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#123a22;--green:#1e6b3a;--leaf:#5eb320;--ink:#23301f;--muted:#5a6a55;
+  --paper:#f4f7f2;--card:#fff;--line:#e3ece0;--radius:14px;
+  --ff:'Plus Jakarta Sans',system-ui,sans-serif;--ff-d:'Bricolage Grotesque',var(--ff);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ff);background:var(--paper);color:var(--ink);line-height:1.6}
+.bar{background:var(--forest);color:#fff;padding:14px 22px;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+.bar .l{display:flex;align-items:center;gap:11px}
+.bar img{width:34px;height:34px}
+.bar b{font-family:var(--ff-d);font-size:1.05rem;letter-spacing:.01em}
+.bar .tag{background:rgba(255,255,255,.15);font-size:.68rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:.25rem .55rem;border-radius:999px}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 20px 70px}
+.tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.tab{border:1.5px solid var(--line);background:#fff;color:var(--muted);font:inherit;font-weight:700;
+  font-size:.92rem;padding:.6rem 1.15rem;border-radius:999px;cursor:pointer}
+.tab.on{background:var(--green);border-color:var(--green);color:#fff}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+h2{font-family:var(--ff-d);font-size:1.3rem;color:var(--forest);margin-bottom:4px}
+.sub{color:var(--muted);font-size:.92rem;margin-bottom:18px}
+label{display:block;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--muted);margin-bottom:5px}
+input,select,textarea{width:100%;padding:.62rem .8rem;border:1.5px solid var(--line);border-radius:10px;
+  font:inherit;font-size:.94rem;background:#fff;color:var(--ink);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--leaf)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:12px}
+.btn{border:0;background:var(--green);color:#fff;font:inherit;font-weight:700;font-size:.92rem;
+  padding:.68rem 1.25rem;border-radius:10px;cursor:pointer}
+.btn:hover{background:var(--leaf)}
+.btn.ghost{background:#fff;color:var(--green);border:1.5px solid var(--line)}
+.btn.red{background:#fff;color:#b23b3b;border:1.5px solid #f0d3d3}
+.btn.big{width:100%;padding:.9rem;font-size:1rem}
+.plist{display:grid;gap:10px}
+.prow{display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:10px 13px}
+.prow .thumb{width:52px;height:52px;border-radius:9px;object-fit:cover;flex:none;
+  background:linear-gradient(140deg,#eaf5e4,#dcebd4);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.prow .info{flex:1;min-width:0}
+.prow .info b{display:block;font-size:.94rem;color:var(--forest)}
+.prow .info span{font-size:.82rem;color:var(--muted)}
+.prow .acts{display:flex;gap:6px}
+.prow .acts button{border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:.4rem .7rem;
+  cursor:pointer;font-size:.82rem;font-weight:700;color:var(--muted)}
+.prow .acts button:hover{border-color:var(--leaf);color:var(--green)}
+.save-box{position:sticky;bottom:0;background:#fff;border-top:2px solid var(--leaf);padding:16px 20px;
+  margin:22px -20px -70px;box-shadow:0 -6px 24px rgba(18,58,34,.1)}
+.hint{background:#eef6ea;border-left:4px solid var(--leaf);padding:12px 15px;border-radius:9px;
+  font-size:.88rem;margin-bottom:16px}
+.hint b{color:var(--forest)}
+.code{background:var(--forest);color:#cfe8c0;font-family:ui-monospace,monospace;font-size:.82rem;
+  padding:14px;border-radius:10px;overflow:auto;max-height:280px;white-space:pre;margin-top:10px}
+.pill{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:.22rem .5rem;
+  border-radius:999px;background:#eaf5e4;color:var(--green)}
+dialog{border:0;border-radius:16px;padding:0;max-width:520px;width:92%;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(18,58,34,.5)}
+.dlg-in{padding:24px}
+.dlg-in h3{font-family:var(--ff-d);color:var(--forest);margin-bottom:14px}
+.imgprev{width:88px;height:88px;border-radius:11px;object-fit:cover;border:1.5px solid var(--line);
+  background:#f0f5ee;display:block;margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="l">
+    <img src="assets/emblem.png" alt="">
+    <b>Fresh Lanka Global</b>
+    <span class="tag">Admin Panel</span>
+  </div>
+  <a href="index.html" style="color:#cfe8c0;font-size:.88rem;text-decoration:none">← View website</a>
+</div>
+
+<div class="wrap">
+
+  <div class="hint">
+    <b>How this works:</b> Make your changes below, then click <b>Save</b>. The panel gives you an updated
+    file to upload to GitHub — your live website updates automatically within a minute.
+    This page is <b>never shown to customers</b>.
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-p="products">🛒 Products &amp; Prices</button>
+    <button class="tab" data-p="stores">📍 Stores</button>
+    <button class="tab" data-p="orders">📦 Orders</button>
+    <button class="tab" data-p="images">🖼️ Photos &amp; Logo</button>
+  </div>
+
+  <!-- ============ PRODUCTS ============ -->
+  <div class="panel on" id="p-products">
+    <div class="card">
+      <h2>Products &amp; Prices</h2>
+      <p class="sub">Add new products, change prices, or remove items from the shop.</p>
+      <button class="btn" id="add-new">＋ Add new product</button>
+      <div class="plist" id="plist" style="margin-top:16px"></div>
+    </div>
+    <div class="save-box">
+      <button class="btn big" id="save-products">💾 Save products.json</button>
+    </div>
+  </div>
+
+  <!-- ============ STORES ============ -->
+  <div class="panel" id="p-stores">
+    <div class="card">
+      <h2>Store Locations</h2>
+      <p class="sub">Customers see the nearest store based on the country they choose.</p>
+      <div id="stores"></div>
+    </div>
+    <div class="save-box">
+      <button class="btn big" id="save-stores">💾 Save products.json</button>
+    </div>
+  </div>
+
+  <!-- ============ ORDERS ============ -->
+  <div class="panel" id="p-orders">
+    <div class="card">
+      <h2>Manage Orders</h2>
+      <p class="sub">When an order email arrives, add it here. Customers track it on the Track Order page.</p>
+      <div class="hint">📧 Every order is emailed to you with a reference like <b>FLG-K4M2X9</b>. Paste that reference below.</div>
+
+      <div class="row">
+        <div><label>Order reference</label><input id="o-ref" placeholder="FLG-K4M2X9"></div>
+        <div><label>Customer name</label><input id="o-cust" placeholder="Ahmed Ali"></div>
+      </div>
+      <div class="row">
+        <div><label>Total</label><input id="o-total" placeholder="MVR 150"></div>
+        <div><label>Date placed</label><input id="o-date" type="date"></div>
+        <div><label>Status</label>
+          <select id="o-status">
+            <option value="received">1 — Order received</option>
+            <option value="packing">2 — Packing</option>
+            <option value="shipped">3 — Dispatched</option>
+            <option value="out_for_delivery">4 — Out for delivery</option>
+            <option value="delivered">5 — Delivered</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:12px"><label>Items</label><input id="o-items" placeholder="2 × Premium Betel Leaves"></div>
+      <div style="margin-bottom:14px"><label>Note to customer (optional)</label><input id="o-note" placeholder="Arriving in Malé by 4pm."></div>
+      <button class="btn" id="o-save">＋ Add / update this order</button>
+
+      <div class="plist" id="olist" style="margin-top:20px"></div>
+    </div>
+    <div class="save-box">
+      <button class="btn big" id="save-orders">💾 Save orders.json</button>
+    </div>
+  </div>
+
+  <!-- ============ IMAGES ============ -->
+  <div class="panel" id="p-images">
+    <div class="card">
+      <h2>Product Photos &amp; Logo</h2>
+      <p class="sub">Photos live in the <b>assets</b> folder of your GitHub repo.</p>
+
+      <div class="hint">
+        <b>To add a product photo:</b><br>
+        1. Take a clear, square photo of the product.<br>
+        2. Rename it simply, e.g. <b>okra.jpg</b> (lowercase, no spaces).<br>
+        3. Upload it to GitHub → <b>assets</b> folder.<br>
+        4. In the <b>Products</b> tab, set that product's Image to <b>assets/okra.jpg</b> and Save.
+      </div>
+
+      <div class="hint">
+        <b>To change the logo:</b> upload your new logo to GitHub → <b>assets</b> folder, named exactly
+        <b>emblem.png</b> (replacing the old one). Use a transparent PNG. The whole site updates automatically.
+      </div>
+
+      <h2 style="margin-top:22px;font-size:1.05rem">Prepare a photo</h2>
+      <p class="sub">Drop a photo here to crop it square and shrink it for the web — then download and upload to GitHub.</p>
+      <input type="file" id="imgfile" accept="image/*" style="margin-bottom:12px">
+      <img class="imgprev" id="imgprev" alt="" style="display:none">
+      <div class="row" style="margin-bottom:0">
+        <div><label>Save as filename</label><input id="imgname" placeholder="okra.jpg"></div>
+        <div style="display:flex;align-items:flex-end"><button class="btn" id="imgdl">⬇ Download ready photo</button></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- product editor dialog -->
+<dialog id="dlg">
+  <div class="dlg-in">
+    <h3 id="dlg-t">Edit product</h3>
+    <div style="margin-bottom:12px"><label>Product name</label><input id="f-name"></div>
+    <div class="row">
+      <div><label>Category</label>
+        <select id="f-cat"><option>Betel</option><option>Vegetables</option><option>Fruits</option><option>Groceries</option></select>
+      </div>
+      <div><label>Image path</label><input id="f-img" placeholder="assets/okra.jpg"></div>
+    </div>
+    <div class="row">
+      <div><label>Price — Maldives (MVR)</label><input id="f-mv" type="number" step="0.01"></div>
+      <div><label>Price — Sri Lanka (LKR)</label><input id="f-lk" type="number" step="0.01"></div>
+    </div>
+    <div class="row">
+      <div><label>Rating (1–5)</label><input id="f-rating" type="number" step="0.1" min="1" max="5" value="4.8"></div>
+      <div><label>Reviews count</label><input id="f-reviews" type="number" value="12"></div>
+      <div><label>Show "Fresh" badge</label><select id="f-org"><option value="true">Yes</option><option value="false">No</option></select></div>
+    </div>
+    <div style="display:flex;gap:9px;margin-top:16px">
+      <button class="btn" id="dlg-save" style="flex:1">Save product</button>
+      <button class="btn ghost" id="dlg-cancel">Cancel</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const $ = id => document.getElementById(id);
+let DATA = { categories:[], stores:{}, products:[] };
+let ORDERS = { orders:{} };
+let editIdx = -1;
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('on'));
+  t.classList.add('on');
+  $('p-' + t.dataset.p).classList.add('on');
+});
+
+/* ---------- load ---------- */
+async function load() {
+  try {
+    DATA = await (await fetch('products.json?v=' + Date.now())).json();
+  } catch(e) { alert('Could not load products.json'); }
+  try {
+    ORDERS = await (await fetch('orders.json?v=' + Date.now())).json();
+    if (!ORDERS.orders) ORDERS.orders = {};
+  } catch(e) { ORDERS = { orders:{} }; }
+  renderProducts(); renderStores(); renderOrders();
+}
+
+/* ---------- products ---------- */
+function renderProducts() {
+  $('plist').innerHTML = DATA.products.map((p, i) => `
+    <div class="prow">
+      ${p.img ? `<img class="thumb" src="${p.img}" alt="">` : `<div class="thumb">🌿</div>`}
+      <div class="info">
+        <b>${p.name}</b>
+        <span><span class="pill">${p.cat}</span> &nbsp; MVR ${p.mv} &nbsp;·&nbsp; LKR ${p.lk}</span>
+      </div>
+      <div class="acts">
+        <button data-e="${i}">Edit</button>
+        <button data-d="${i}">Delete</button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--muted)">No products yet.</p>';
+}
+
+$('plist').onclick = e => {
+  const ed = e.target.closest('[data-e]'), del = e.target.closest('[data-d]');
+  if (ed) openDlg(+ed.dataset.e);
+  if (del) {
+    const i = +del.dataset.d;
+    if (confirm('Delete "' + DATA.products[i].name + '"?')) { DATA.products.splice(i,1); renderProducts(); }
+  }
+};
+$('add-new').onclick = () => openDlg(-1);
+
+function openDlg(i) {
+  editIdx = i;
+  const p = i < 0 ? {name:'',cat:'Vegetables',img:'',mv:0,lk:0,rating:4.8,reviews:12,organic:true} : DATA.products[i];
+  $('dlg-t').textContent = i < 0 ? 'Add new product' : 'Edit product';
+  $('f-name').value = p.name; $('f-cat').value = p.cat; $('f-img').value = p.img || '';
+  $('f-mv').value = p.mv; $('f-lk').value = p.lk;
+  $('f-rating').value = p.rating; $('f-reviews').value = p.reviews;
+  $('f-org').value = String(p.organic);
+  $('dlg').showModal();
+}
+$('dlg-cancel').onclick = () => $('dlg').close();
+$('dlg-save').onclick = () => {
+  const name = $('f-name').value.trim();
+  if (!name) { alert('Please enter a product name.'); return; }
+  const p = {
+    id: name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,28) || ('p'+Date.now()),
+    name, cat:$('f-cat').value, img:$('f-img').value.trim(),
+    mv:+$('f-mv').value || 0, lk:+$('f-lk').value || 0,
+    rating:+$('f-rating').value || 4.8, reviews:+$('f-reviews').value || 0,
+    organic: $('f-org').value === 'true'
+  };
+  if (editIdx < 0) DATA.products.push(p); else { p.id = DATA.products[editIdx].id; DATA.products[editIdx] = p; }
+  $('dlg').close(); renderProducts();
+};
+
+/* ---------- stores ---------- */
+function renderStores() {
+  $('stores').innerHTML = Object.keys(DATA.stores).map(k => {
+    const s = DATA.stores[k];
+    return `<div class="card" style="background:#fafcf9">
+      <span class="pill">${k === 'MV' ? '🇲🇻 Maldives' : '🇱🇰 Sri Lanka'}</span>
+      <div class="row" style="margin-top:12px">
+        <div><label>Store name</label><input data-s="${k}" data-f="name" value="${s.name||''}"></div>
+        <div><label>Area</label><input data-s="${k}" data-f="area" value="${s.area||''}"></div>
+        <div><label>Phone</label><input data-s="${k}" data-f="phone" value="${s.phone||''}"></div>
+      </div>
+      <div><label>Delivery note</label><input data-s="${k}" data-f="note" value="${s.note||''}"></div>
+    </div>`;
+  }).join('');
+  $('stores').oninput = e => {
+    const t = e.target;
+    if (t.dataset.s) DATA.stores[t.dataset.s][t.dataset.f] = t.value;
+  };
+}
+
+/* ---------- orders ---------- */
+function renderOrders() {
+  const keys = Object.keys(ORDERS.orders).filter(k => k !== '_help');
+  $('olist').innerHTML = keys.map(k => {
+    const o = ORDERS.orders[k];
+    return `<div class="prow">
+      <div class="thumb">📦</div>
+      <div class="info"><b>${k} — ${o.customer||''}</b>
+        <span><span class="pill">${(o.status||'').replace(/_/g,' ')}</span> &nbsp; ${o.total||''} · ${o.placed||''}</span></div>
+      <div class="acts"><button data-oe="${k}">Edit</button><button data-od="${k}">Delete</button></div>
+    </div>`;
+  }).join('') || '<p style="color:var(--muted)">No orders yet.</p>';
+}
+$('olist').onclick = e => {
+  const ed = e.target.closest('[data-oe]'), del = e.target.closest('[data-od]');
+  if (ed) {
+    const k = ed.dataset.oe, o = ORDERS.orders[k];
+    $('o-ref').value=k; $('o-cust').value=o.customer||''; $('o-total').value=o.total||'';
+    $('o-date').value=o.placed||''; $('o-status').value=o.status||'received';
+    $('o-items').value=o.items||''; $('o-note').value=o.note||'';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  if (del) {
+    const k = del.dataset.od;
+    if (confirm('Delete order ' + k + '?')) { delete ORDERS.orders[k]; renderOrders(); }
+  }
+};
+$('o-save').onclick = () => {
+  const ref = $('o-ref').value.trim().toUpperCase();
+  if (!ref) { alert('Enter the order reference.'); return; }
+  ORDERS.orders[ref] = {
+    customer:$('o-cust').value.trim(), placed:$('o-date').value,
+    status:$('o-status').value, items:$('o-items').value.trim(),
+    total:$('o-total').value.trim(), note:$('o-note').value.trim()
+  };
+  ['o-ref','o-cust','o-total','o-items','o-note'].forEach(i => $(i).value='');
+  renderOrders();
+  alert('Order saved. Now click "Save orders.json" and upload it to GitHub.');
+};
+
+/* ---------- download helpers ---------- */
+function download(name, obj) {
+  const blob = new Blob([JSON.stringify(obj, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  alert('Downloaded ' + name + '\n\nNow upload this file to your GitHub repo (same filename) — the website updates automatically.');
+}
+$('save-products').onclick = () => download('products.json', DATA);
+$('save-stores').onclick   = () => download('products.json', DATA);
+$('save-orders').onclick   = () => download('orders.json', ORDERS);
+
+/* ---------- image prep ---------- */
+let readyBlob = null;
+$('imgfile').onchange = e => {
+  const file = e.target.files[0]; if (!file) return;
+  if (!$('imgname').value) $('imgname').value = file.name.replace(/\.[^.]+$/,'').toLowerCase().replace(/[^a-z0-9]+/g,'-') + '.jpg';
+  const img = new Image();
+  img.onload = () => {
+    const s = Math.min(img.width, img.height), c = document.createElement('canvas');
+    c.width = c.height = 800;
+    c.getContext('2d').drawImage(img, (img.width-s)/2, (img.height-s)/2, s, s, 0, 0, 800, 800);
+    $('imgprev').src = c.toDataURL('image/jpeg', .88);
+    $('imgprev').style.display = 'block';
+    c.toBlob(b => readyBlob = b, 'image/jpeg', .88);
+  };
+  img.src = URL.createObjectURL(file);
+};
+$('imgdl').onclick = () => {
+  if (!readyBlob) { alert('Choose a photo first.'); return; }
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(readyBlob);
+  a.download = ($('imgname').value.trim() || 'product.jpg').replace(/[^a-z0-9.\-]/gi,'-');
+  a.click();
+  alert('Photo ready!\n\nUpload it to GitHub → assets folder, then set the product Image to:\nassets/' + a.download);
+};
+
+load();
+</script>
+</body>
+</html>

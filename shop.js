@@ -1,38 +1,12 @@
 /* =========================================================
    Fresh Lanka Global — Shop
-   HOW TO EDIT PRODUCTS: change the PRODUCTS list below.
-     img:  "assets/yourphoto.jpg"  (leave "" to show a leaf icon)
-     mv:   price in Maldivian Rufiyaa (MVR)
-     lk:   price in Sri Lankan Rupees (LKR)
-   HOW TO EDIT STORES: change the STORES list below.
+   Products & stores are loaded from products.json
+   Edit them in the ADMIN PANEL (admin.html) — no coding needed.
    ========================================================= */
 
-const PRODUCTS = [
-  { id:'betel-100',  name:'Premium Betel Leaves (bundle of 100)', cat:'Betel',      img:'assets/betel.jpg', mv:75,  lk:850,  rating:5.0, reviews:64, organic:true },
-  { id:'betel-50',   name:'Betel Leaves (bundle of 50)',          cat:'Betel',      img:'assets/betel.jpg', mv:42,  lk:480,  rating:4.9, reviews:38, organic:true },
-  { id:'okra',       name:'Fresh Okra (Ladies Fingers) — 500g',   cat:'Vegetables', img:'', mv:28,  lk:320,  rating:4.7, reviews:41, organic:true },
-  { id:'brinjal',    name:'Purple Brinjal (Aubergine) — 1kg',     cat:'Vegetables', img:'', mv:35,  lk:400,  rating:4.6, reviews:27, organic:true },
-  { id:'snakegourd', name:'Snake Gourd — 1kg',                    cat:'Vegetables', img:'', mv:32,  lk:365,  rating:4.5, reviews:19, organic:false },
-  { id:'curryleaf',  name:'Curry Leaves — fresh bunch',           cat:'Vegetables', img:'', mv:12,  lk:140,  rating:4.9, reviews:52, organic:true },
-  { id:'king-coco',  name:'King Coconut (Thambili) — pack of 4',  cat:'Fruits',     img:'', mv:60,  lk:680,  rating:4.8, reviews:33, organic:true },
-  { id:'papaya',     name:'Red Lady Papaya — each',               cat:'Fruits',     img:'', mv:38,  lk:430,  rating:4.6, reviews:24, organic:true },
-  { id:'pineapple',  name:'Sweet Pineapple — each',               cat:'Fruits',     img:'', mv:45,  lk:510,  rating:4.7, reviews:29, organic:false },
-  { id:'banana',     name:'Ambul Banana — 1kg',                   cat:'Fruits',     img:'', mv:30,  lk:340,  rating:4.5, reviews:36, organic:true },
-  { id:'redrice',    name:'Sri Lankan Red Rice — 5kg',            cat:'Groceries',  img:'', mv:145, lk:1650, rating:4.8, reviews:47, organic:false },
-  { id:'cinnamon',   name:'Ceylon Cinnamon Sticks — 100g',        cat:'Groceries',  img:'', mv:55,  lk:620,  rating:5.0, reviews:58, organic:true },
-  { id:'coconutoil', name:'Virgin Coconut Oil — 500ml',           cat:'Groceries',  img:'', mv:78,  lk:890,  rating:4.9, reviews:44, organic:true },
-  { id:'blacktea',   name:'Pure Ceylon Black Tea — 250g',         cat:'Groceries',  img:'', mv:65,  lk:740,  rating:4.9, reviews:71, organic:false },
-  { id:'currypowder',name:'Roasted Curry Powder — 250g',          cat:'Groceries',  img:'', mv:34,  lk:390,  rating:4.7, reviews:31, organic:false },
-  { id:'jaggery',    name:'Kithul Jaggery — 400g',                cat:'Groceries',  img:'', mv:48,  lk:545,  rating:4.8, reviews:22, organic:true }
-];
-
-/* Nearest store shown per country. Add more stores here as you open them. */
-const STORES = {
-  MV: { name:'Fresh Lanka Super — Malé', area:'Malé, Maldives', phone:'+960 946 0275',
-        note:'Same-day delivery in Malé & Hulhumalé for orders placed before 3:00 PM.' },
-  LK: { name:'Fresh Lanka Super — Colombo', area:'Colombo, Sri Lanka', phone:'+94 76 853 3361',
-        note:'Next-day delivery across Colombo and suburbs.' }
-};
+let PRODUCTS = [];
+let STORES = {};
+let CATS = [];
 
 const CUR = { MV:{ code:'MVR', key:'mv' }, LK:{ code:'LKR', key:'lk' } };
 
@@ -190,8 +164,25 @@ $('order-form').addEventListener('submit', async (e) => {
   }
 });
 
-/* ---------- init ---------- */
-$('country').value = country;
-renderStore();
-renderProducts();
-renderCart();
+/* ---------- init: load catalogue from products.json ---------- */
+(async function init(){
+  try {
+    const res = await fetch('products.json?v=' + Date.now());
+    const data = await res.json();
+    PRODUCTS = data.products || [];
+    STORES   = data.stores   || {};
+    CATS     = data.categories || [];
+    if (CATS.length) {
+      $('filters').innerHTML =
+        '<button class="chip-btn active" data-cat="all">All products</button>' +
+        CATS.map(c => `<button class="chip-btn" data-cat="${c}">${c}</button>`).join('');
+    }
+  } catch (e) {
+    $('grid').innerHTML = '<p style="color:var(--muted)">Could not load products. Please refresh.</p>';
+    return;
+  }
+  $('country').value = country;
+  renderStore();
+  renderProducts();
+  renderCart();
+})();
